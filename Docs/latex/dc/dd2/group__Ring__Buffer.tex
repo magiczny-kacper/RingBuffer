@@ -1,0 +1,328 @@
+\hypertarget{group__Ring__Buffer}{}\doxysection{Ring\+\_\+\+Buffer}
+\label{group__Ring__Buffer}\index{Ring\_Buffer@{Ring\_Buffer}}
+
+
+F\+I\+FO ring buffer library.  
+
+
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Buffer handler structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__Ring__Buffer_gabb3a8b94be0326cc88cfa3d0dbbc9178}{M\+O\+D\+U\+L\+O\+\_\+\+B\+UF}}(value,  max)~((value) \% (max))
+\item 
+\#define \mbox{\hyperlink{group__Ring__Buffer_ga936cc15b87787e01633f713ddbff985c}{R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+P\+O\+I\+N\+T\+E\+RS}}~1
+\item 
+\#define \mbox{\hyperlink{group__Ring__Buffer_ga959606bc031c436623b4a5657b3c8868}{R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+A\+R\+R\+A\+YS}}~0
+\item 
+\mbox{\Hypertarget{group__Ring__Buffer_ga34759de3cedaf8f727bbab2fce82603c}\label{group__Ring__Buffer_ga34759de3cedaf8f727bbab2fce82603c}} 
+\#define {\bfseries R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+M\+O\+DE}~\mbox{\hyperlink{group__Ring__Buffer_ga936cc15b87787e01633f713ddbff985c}{R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+P\+O\+I\+N\+T\+E\+RS}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \{ \mbox{\hyperlink{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a13b7b7f3f849a0fd8bcfb2d3a99c48b0}{N\+O\+\_\+\+P\+TR}} = -\/3, 
+\mbox{\hyperlink{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ad2c08fb8362bb7bc8b17aa5a6df6e498}{N\+O\+\_\+\+D\+A\+TA}} = -\/2, 
+\mbox{\hyperlink{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ac8b52f1f9691d409f9f3e2ec93ee570a}{N\+O\+\_\+\+P\+L\+A\+CE}} = -\/1, 
+\mbox{\hyperlink{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a2bc49ec37d6a5715dd23e85f1ff5bb59}{OK}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Ring buffer status enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga7b1caf9687d2f0270247633ceff9db90}{Ring\+Get\+Max\+Size}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gac696071926708a45e4d7e142a33a0623}{Ring\+Get\+Space}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Function that returns available space in selected buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga23eb42230ba095ca50abb77eb11a2eff}{Ring\+Get\+Data\+Cnt}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Function that returns count of data available in buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gaa556cc739902cc08d15659027e06b300}{Ring\+Init}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$array\+Buffer, uint32\+\_\+t buffer\+Size)
+\begin{DoxyCompactList}\small\item\em Function to initialize selected ring buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gae5a175937c4680a44ee8ec456a9ca4c7}{Ring\+Write\+Byte}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Addes one byte to the end of buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_ga0f2b3a28776f7a36ab82041d48c6c2c4}{Ring\+Write\+Multiple\+Bytes}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Writes multiple bytes to buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_ga00f1fa3699a8a55f4cc2225d35d56b34}{Ring\+Read\+Byte}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data)
+\begin{DoxyCompactList}\small\item\em Reads one byte from buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gaeb52a1fd6a90200909b0b6eee945b67f}{Ring\+Read\+Multiple\+Bytes}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Reads multiple bytes from buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gaf36af3795f1b29474cf98fd98b650ab0}{Ring\+Get\+Head}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Returns write pointer of buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga2213e4e3927b2cca3bc520c735364d68}{Ring\+Get\+Tail}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Returns read pointer of buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gad27a39a359824797f228d5cd1f3725cd}{Ring\+Get\+Last\+Element}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Gets last element from buffer without taking it from buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+F\+I\+FO ring buffer library. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__Ring__Buffer_gabb3a8b94be0326cc88cfa3d0dbbc9178}\label{group__Ring__Buffer_gabb3a8b94be0326cc88cfa3d0dbbc9178}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!MODULO\_BUF@{MODULO\_BUF}}
+\index{MODULO\_BUF@{MODULO\_BUF}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{MODULO\_BUF}{MODULO\_BUF}}
+{\footnotesize\ttfamily \#define M\+O\+D\+U\+L\+O\+\_\+\+B\+UF(\begin{DoxyParamCaption}\item[{}]{value,  }\item[{}]{max }\end{DoxyParamCaption})~((value) \% (max))}
+
+$<$ Modulo for operations on array indexes. \mbox{\Hypertarget{group__Ring__Buffer_ga959606bc031c436623b4a5657b3c8868}\label{group__Ring__Buffer_ga959606bc031c436623b4a5657b3c8868}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RING\_BUFFER\_ARRAYS@{RING\_BUFFER\_ARRAYS}}
+\index{RING\_BUFFER\_ARRAYS@{RING\_BUFFER\_ARRAYS}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RING\_BUFFER\_ARRAYS}{RING\_BUFFER\_ARRAYS}}
+{\footnotesize\ttfamily \#define R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+A\+R\+R\+A\+YS~0}
+
+Selected ring buffer mode. \mbox{\Hypertarget{group__Ring__Buffer_ga936cc15b87787e01633f713ddbff985c}\label{group__Ring__Buffer_ga936cc15b87787e01633f713ddbff985c}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RING\_BUFFER\_POINTERS@{RING\_BUFFER\_POINTERS}}
+\index{RING\_BUFFER\_POINTERS@{RING\_BUFFER\_POINTERS}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RING\_BUFFER\_POINTERS}{RING\_BUFFER\_POINTERS}}
+{\footnotesize\ttfamily \#define R\+I\+N\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+P\+O\+I\+N\+T\+E\+RS~1}
+
+$<$ Ring buffer will oprate on array pointer. Ring buffer will operate on fixed size array. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}\label{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingStatus\_t@{RingStatus\_t}}
+\index{RingStatus\_t@{RingStatus\_t}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingStatus\_t}{RingStatus\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}}}
+
+
+
+Ring buffer status enumerator. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO\_PTR@{NO\_PTR}!Ring\_Buffer@{Ring\_Buffer}}\index{Ring\_Buffer@{Ring\_Buffer}!NO\_PTR@{NO\_PTR}}}\mbox{\Hypertarget{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a13b7b7f3f849a0fd8bcfb2d3a99c48b0}\label{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a13b7b7f3f849a0fd8bcfb2d3a99c48b0}} 
+N\+O\+\_\+\+P\+TR&Returned if null pointer was given as parameter. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO\_DATA@{NO\_DATA}!Ring\_Buffer@{Ring\_Buffer}}\index{Ring\_Buffer@{Ring\_Buffer}!NO\_DATA@{NO\_DATA}}}\mbox{\Hypertarget{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ad2c08fb8362bb7bc8b17aa5a6df6e498}\label{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ad2c08fb8362bb7bc8b17aa5a6df6e498}} 
+N\+O\+\_\+\+D\+A\+TA&Returned if there was no data to read in buffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO\_PLACE@{NO\_PLACE}!Ring\_Buffer@{Ring\_Buffer}}\index{Ring\_Buffer@{Ring\_Buffer}!NO\_PLACE@{NO\_PLACE}}}\mbox{\Hypertarget{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ac8b52f1f9691d409f9f3e2ec93ee570a}\label{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880ac8b52f1f9691d409f9f3e2ec93ee570a}} 
+N\+O\+\_\+\+P\+L\+A\+CE&Returned if there was no place to write data in buffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OK@{OK}!Ring\_Buffer@{Ring\_Buffer}}\index{Ring\_Buffer@{Ring\_Buffer}!OK@{OK}}}\mbox{\Hypertarget{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a2bc49ec37d6a5715dd23e85f1ff5bb59}\label{group__Ring__Buffer_ggac183adbc0cfacea4cfc637c6aaaf4880a2bc49ec37d6a5715dd23e85f1ff5bb59}} 
+OK&Returned when write/read was succesfull/ \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__Ring__Buffer_ga23eb42230ba095ca50abb77eb11a2eff}\label{group__Ring__Buffer_ga23eb42230ba095ca50abb77eb11a2eff}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetDataCnt@{RingGetDataCnt}}
+\index{RingGetDataCnt@{RingGetDataCnt}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetDataCnt()}{RingGetDataCnt()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Data\+Cnt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Function that returns count of data available in buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to buffer structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Data count in buffer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_gaf36af3795f1b29474cf98fd98b650ab0}\label{group__Ring__Buffer_gaf36af3795f1b29474cf98fd98b650ab0}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetHead@{RingGetHead}}
+\index{RingGetHead@{RingGetHead}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetHead()}{RingGetHead()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Head (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Returns write pointer of buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to get pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Write pointer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_gad27a39a359824797f228d5cd1f3725cd}\label{group__Ring__Buffer_gad27a39a359824797f228d5cd1f3725cd}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetLastElement@{RingGetLastElement}}
+\index{RingGetLastElement@{RingGetLastElement}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetLastElement()}{RingGetLastElement()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Last\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Gets last element from buffer without taking it from buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Last byte in buffer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_ga7b1caf9687d2f0270247633ceff9db90}\label{group__Ring__Buffer_ga7b1caf9687d2f0270247633ceff9db90}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetMaxSize@{RingGetMaxSize}}
+\index{RingGetMaxSize@{RingGetMaxSize}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetMaxSize()}{RingGetMaxSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Max\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+Function that returns size of whole ring buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to buffer structure, which size has to be returned. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Size} & of pointed ring buffer. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__Ring__Buffer_gac696071926708a45e4d7e142a33a0623}\label{group__Ring__Buffer_gac696071926708a45e4d7e142a33a0623}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetSpace@{RingGetSpace}}
+\index{RingGetSpace@{RingGetSpace}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetSpace()}{RingGetSpace()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Function that returns available space in selected buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to buffer structure, which size has to be returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Available size in provided buffer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_ga2213e4e3927b2cca3bc520c735364d68}\label{group__Ring__Buffer_ga2213e4e3927b2cca3bc520c735364d68}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingGetTail@{RingGetTail}}
+\index{RingGetTail@{RingGetTail}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingGetTail()}{RingGetTail()}}
+{\footnotesize\ttfamily uint32\+\_\+t Ring\+Get\+Tail (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Returns read pointer of buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to get pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Read pointer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_gaa556cc739902cc08d15659027e06b300}\label{group__Ring__Buffer_gaa556cc739902cc08d15659027e06b300}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingInit@{RingInit}}
+\index{RingInit@{RingInit}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingInit()}{RingInit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} Ring\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t $\ast$}]{array\+Buffer,  }\item[{uint32\+\_\+t}]{buffer\+Size }\end{DoxyParamCaption})}
+
+
+
+Function to initialize selected ring buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to buffer structure that has to be initialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_ga00f1fa3699a8a55f4cc2225d35d56b34}\label{group__Ring__Buffer_ga00f1fa3699a8a55f4cc2225d35d56b34}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingReadByte@{RingReadByte}}
+\index{RingReadByte@{RingReadByte}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingReadByte()}{RingReadByte()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} Ring\+Read\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads one byte from buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to read. \\
+\hline
+{\em data} & Pointer to save data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ring\+Status\+\_\+t Read status. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_gaeb52a1fd6a90200909b0b6eee945b67f}\label{group__Ring__Buffer_gaeb52a1fd6a90200909b0b6eee945b67f}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingReadMultipleBytes@{RingReadMultipleBytes}}
+\index{RingReadMultipleBytes@{RingReadMultipleBytes}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingReadMultipleBytes()}{RingReadMultipleBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} Ring\+Read\+Multiple\+Bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Reads multiple bytes from buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to read data. \\
+\hline
+{\em data} & Pointer to write data. \\
+\hline
+{\em len} & Length of data to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ring\+Status\+\_\+t Read status. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_gae5a175937c4680a44ee8ec456a9ca4c7}\label{group__Ring__Buffer_gae5a175937c4680a44ee8ec456a9ca4c7}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingWriteByte@{RingWriteByte}}
+\index{RingWriteByte@{RingWriteByte}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingWriteByte()}{RingWriteByte()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} Ring\+Write\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Addes one byte to the end of buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to buffer to write. \\
+\hline
+{\em data} & Data to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ring\+Status\+\_\+t Status of write process. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__Ring__Buffer_ga0f2b3a28776f7a36ab82041d48c6c2c4}\label{group__Ring__Buffer_ga0f2b3a28776f7a36ab82041d48c6c2c4}} 
+\index{Ring\_Buffer@{Ring\_Buffer}!RingWriteMultipleBytes@{RingWriteMultipleBytes}}
+\index{RingWriteMultipleBytes@{RingWriteMultipleBytes}!Ring\_Buffer@{Ring\_Buffer}}
+\doxysubsubsection{\texorpdfstring{RingWriteMultipleBytes()}{RingWriteMultipleBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} Ring\+Write\+Multiple\+Bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Writes multiple bytes to buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer to write data. \\
+\hline
+{\em data} & Data pointer to write. \\
+\hline
+{\em len} & Length of data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ring\+Status\+\_\+t Write status. 
+\end{DoxyReturn}

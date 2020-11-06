@@ -1,0 +1,59 @@
+\hypertarget{ring_8c}{}\doxysection{Src/ring.c File Reference}
+\label{ring_8c}\index{Src/ring.c@{Src/ring.c}}
+
+
+Ring buffer library source file.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ring.\+h\char`\"{}}\newline
+Include dependency graph for ring.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__Ring__Buffer_gabb3a8b94be0326cc88cfa3d0dbbc9178}{M\+O\+D\+U\+L\+O\+\_\+\+B\+UF}}(value,  max)~((value) \% (max))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga7b1caf9687d2f0270247633ceff9db90}{Ring\+Get\+Max\+Size}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gac696071926708a45e4d7e142a33a0623}{Ring\+Get\+Space}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Function that returns available space in selected buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga23eb42230ba095ca50abb77eb11a2eff}{Ring\+Get\+Data\+Cnt}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Function that returns count of data available in buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gaa556cc739902cc08d15659027e06b300}{Ring\+Init}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$array\+Buffer, uint32\+\_\+t buffer\+Size)
+\begin{DoxyCompactList}\small\item\em Function to initialize selected ring buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gae5a175937c4680a44ee8ec456a9ca4c7}{Ring\+Write\+Byte}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Addes one byte to the end of buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_ga0f2b3a28776f7a36ab82041d48c6c2c4}{Ring\+Write\+Multiple\+Bytes}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Writes multiple bytes to buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_ga00f1fa3699a8a55f4cc2225d35d56b34}{Ring\+Read\+Byte}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data)
+\begin{DoxyCompactList}\small\item\em Reads one byte from buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Ring__Buffer_gac183adbc0cfacea4cfc637c6aaaf4880}{Ring\+Status\+\_\+t}} \mbox{\hyperlink{group__Ring__Buffer_gaeb52a1fd6a90200909b0b6eee945b67f}{Ring\+Read\+Multiple\+Bytes}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer, uint8\+\_\+t $\ast$data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Reads multiple bytes from buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gaf36af3795f1b29474cf98fd98b650ab0}{Ring\+Get\+Head}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Returns write pointer of buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_ga2213e4e3927b2cca3bc520c735364d68}{Ring\+Get\+Tail}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Returns read pointer of buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gad27a39a359824797f228d5cd1f3725cd}{Ring\+Get\+Last\+Element}} (\mbox{\hyperlink{structRingBuffer__t}{Ring\+Buffer\+\_\+t}} $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Gets last element from buffer without taking it from buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ring buffer library source file. 
+
+\begin{DoxyAuthor}{Author}
+Kacper Brzostowski (\href{mailto:kapibrv97@gmail.com}{\texttt{ kapibrv97@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2020-\/08-\/04
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2020 
+\end{DoxyCopyright}

@@ -15,27 +15,30 @@
  */
 #include <stdint.h>
 #include <string.h>
-#include "../../utils/tools.h"
 #include "ring.h"
 
-uint32_t RingGetMaxSize (ringBufferTypeDef* buffer){
+/**< Modulo for operations on array indexes. */
+#define MODULO_BUF(value, max) ((value) % (max))
+
+uint32_t RingGetMaxSize (RingBuffer_t* buffer){
 	return buffer -> size;
 }
 
-uint32_t RingGetSpace (ringBufferTypeDef* buffer){
+uint32_t RingGetSpace (RingBuffer_t* buffer){
 	return buffer -> place;
 }
 
-uint32_t RingGetDataCnt (ringBufferTypeDef* buffer){
+uint32_t RingGetDataCnt (RingBuffer_t* buffer){
 	return buffer -> size - RingGetSpace(buffer);
 }
 
-ring_status RingInit (ringBufferTypeDef* buffer
+/* TODO: Add null pointer exceptions. */
+RingStatus_t RingInit (RingBuffer_t* buffer
 #if RING_BUFFER_MODE == RING_BUFFER_POINTERS
 		, uint8_t* arrayBuffer, uint32_t bufferSize
 #endif
 ){
-	memset(buffer, 0, sizeof(ringBufferTypeDef));
+	memset(buffer, 0, sizeof(RingBuffer_t));
 #if RING_BUFFER_MODE == RING_BUFFER_POINTERS
 	if(arrayBuffer == NULL) return NO_PTR;
 	if(bufferSize <= 0) return NO_DATA;
@@ -51,8 +54,8 @@ ring_status RingInit (ringBufferTypeDef* buffer
 	return OK;
 }
 
-ring_status RingWriteByte (ringBufferTypeDef* buffer, uint8_t data){
-	ring_status retval = OK;
+RingStatus_t RingWriteByte (RingBuffer_t* buffer, uint8_t data){
+	RingStatus_t retval = OK;
 	if(buffer == NULL) return NO_PTR;
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempTail = buffer -> readPtr;
@@ -80,8 +83,8 @@ ring_status RingWriteByte (ringBufferTypeDef* buffer, uint8_t data){
 	return retval;
 }
 
-ring_status RingWriteMultipleBytes (ringBufferTypeDef* buffer, uint8_t* data, uint32_t len){
-	ring_status retval = OK;
+RingStatus_t RingWriteMultipleBytes (RingBuffer_t* buffer, uint8_t* data, uint32_t len){
+	RingStatus_t retval = OK;
 	if(buffer == NULL) return NO_PTR;
 	if(data == NULL) return NO_PTR;
 	if(len <= 0) return NO_DATA;
@@ -131,8 +134,8 @@ ring_status RingWriteMultipleBytes (ringBufferTypeDef* buffer, uint8_t* data, ui
 	return retval;
 }
 
-ring_status RingReadByte (ringBufferTypeDef* buffer, uint8_t* data){
-	ring_status retval = OK;
+RingStatus_t RingReadByte (RingBuffer_t* buffer, uint8_t* data){
+	RingStatus_t retval = OK;
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempTail = buffer -> readPtr;
 	uint32_t tempPlace = buffer -> place;
@@ -157,8 +160,8 @@ ring_status RingReadByte (ringBufferTypeDef* buffer, uint8_t* data){
 	return retval;
 }
 
-ring_status RingReadMultipleBytes (ringBufferTypeDef* buffer, uint8_t* data, uint32_t len){
-	ring_status retval = OK;
+RingStatus_t RingReadMultipleBytes (RingBuffer_t* buffer, uint8_t* data, uint32_t len){
+	RingStatus_t retval = OK;
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempTail = buffer -> readPtr;
 	uint32_t tempPlace = buffer -> place;
@@ -202,15 +205,15 @@ ring_status RingReadMultipleBytes (ringBufferTypeDef* buffer, uint8_t* data, uin
 	return retval;
 }
 
-uint32_t RingGetHead (ringBufferTypeDef* buffer){
+uint32_t RingGetHead (RingBuffer_t* buffer){
 	return buffer -> writePtr;
 }
 
-uint32_t RingGetTail (ringBufferTypeDef* buffer){
+uint32_t RingGetTail (RingBuffer_t* buffer){
 	return buffer -> readPtr;
 }
 
-uint32_t RingGetLastElement(ringBufferTypeDef* buffer){
+uint32_t RingGetLastElement(RingBuffer_t* buffer){
 #if RING_BUFFER_MODE == RING_BUFFER_POINTERS
 	uint8_t data;
 	data = *(buffer -> buffer + buffer -> writePtr);
