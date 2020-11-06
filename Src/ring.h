@@ -1,11 +1,12 @@
 /**
  * @file ring.h
  * @author Kacper Brzostowski (kapibrv97@gmail.com)
+ * @link https://github.com/magiczny-kacper
  * @brief FIFO ring buffer driver library header.
  * @version 1.1.0
- * @date 2020-06-11
+ * @date 2020-10-11
  * 
- * @copyright Copyright (c) 2020
+ * @copyright GNU General Public License v3.0
  * 
  */
 

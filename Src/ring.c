@@ -1,16 +1,17 @@
 /**
  * @file ring.c
  * @author Kacper Brzostowski (kapibrv97@gmail.com)
+ * @link https://github.com/magiczny-kacper
  * @brief Ring buffer library source file.
  * @version 1.1.0
- * @date 2020-08-04
+ * @date 2020-10-04
  * 
  * @copyright Copyright (c) 2020
  * 
  */
 
 /**
- * @addtogroup Ring_Buffer
+ * @copyright GNU General Public License v3.0
  * @{
  */
 #include <stdint.h>

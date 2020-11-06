@@ -64,14 +64,5 @@ uint32\+\_\+t \mbox{\hyperlink{group__Ring__Buffer_gad27a39a359824797f228d5cd1f3
 F\+I\+FO ring buffer driver library header. 
 
 \begin{DoxyAuthor}{Author}
-Kacper Brzostowski (\href{mailto:kapibrv97@gmail.com}{\texttt{ kapibrv97@gmail.\+com}}) 
+Kacper Brzostowski (\href{mailto:kapibrv97@gmail.com}{\texttt{ kapibrv97@gmail.\+com}}) \mbox{\hyperlink{}{1.\+1.\+0  2020-\/10-\/11  G\+NU General Public License v3.\+0 }}
 \end{DoxyAuthor}
-\begin{DoxyVersion}{Version}
-1.\+1.\+0 
-\end{DoxyVersion}
-\begin{DoxyDate}{Date}
-2020-\/06-\/11
-\end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-Copyright (c) 2020 
-\end{DoxyCopyright}

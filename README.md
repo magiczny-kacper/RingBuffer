@@ -5,5 +5,5 @@ My ring buffer implementation, for embedde applications. Tested on STM32L1, STM3
 - [ ] Add makefile
 - [ ] Add makefile for unit tests
 - [ ] Add unit tests files 
-- [ ] Generate doxygen docs 
+- [x] Generate doxygen docs 
 - [ ] Provide examples
