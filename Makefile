@@ -1,7 +1,7 @@
 # Script for compiling unit tests on PC.
 
 # Name for output binary hex, bin files
-BIN_NAME := ringBuffer
+BIN_NAME := RingBuffer
 
 # Folder containing compilation result files
 OUT_DIR := out/
@@ -114,24 +114,25 @@ run:
 	@$(OUT_DIR)bin/$(BIN_NAME)
 
 # Creating resulting binary file
-	$(OUT_DIR)bin/$(BIN_NAME) : $(TEST_OBJ) $(CODE_OBJ)
+$(OUT_DIR)bin/$(BIN_NAME) : $(TEST_OBJ) $(CODE_OBJ)
 	@echo 'Linking target: $(OUT_DIR)bin/$(BIN_NAME)'
 	$(CC) $(LD_FLAGS) $(TEST_OBJ) $(CODE_OBJ) $(LD_LIBS) -o $@
 	@echo ''
 
 # Pattern for code under test compilation
-	$(OUT_DIR)code/%.o : %.$(C_EXT)
+$(OUT_DIR)code/%.o : %.$(C_EXT)
 	@echo 'Compiling file: $<'
 	$(CC) -c $(C_FLAGS_CODE) $< -o $@
 	@echo ''
 
 # Pattern for test files compilation
-	$(OUT_DIR)test/%.o : %.$(C_EXT)
+$(OUT_DIR)test/%.o : %.$(C_EXT)
 	@echo 'Compiling file: $<'
 	$(CC) -c $(C_FLAGS_TEST) $< -o $@
 	@echo ''
 
 out_dir :
+	@echo 'Creating output directories.'
 	@mkdir -p $(OUT_DIR)bin
 	@mkdir -p $(OUT_DIR)code
 	@mkdir -p $(OUT_DIR)test
