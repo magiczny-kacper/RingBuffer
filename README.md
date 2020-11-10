@@ -1,5 +1,5 @@
 # RingBuffer
-![Build Status](https://travis-ci.com/magiczny-kacper/RingBuffer.svg?branch=master)
+![Build Status](https://github.com/magiczny-kacper/RingBuffer/workflows/BuildWrokflow/badge.svg)
 
 <br>
 My ring buffer implementation, for embedde applications. Tested on STM32L1, STM32F3, STM32F4 and PIC18F platforms. Includes unit tests.<br/>
