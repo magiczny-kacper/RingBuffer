@@ -17,5 +17,3 @@ jobs:
       run: make clean
     - name: make All
       run: make all
-    - name: make distcheck
-      run: make distcheck
