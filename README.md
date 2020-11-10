@@ -4,7 +4,6 @@ My ring buffer implementation, for embedde applications. Tested on STM32L1, STM3
 - Unit_test - Unit tests source files.
 - Docs - Documentation files.
 - unity - Unit tests framework.
-[![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
 
 # To do:
 - [ ] Add makefile
