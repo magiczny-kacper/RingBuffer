@@ -17,7 +17,3 @@ jobs:
       run: make clean
     - name: Run unit tests
       run: make all
-    - name: Archive Rest Results
-      uses: actions/upload-artifact@v1
-      with:
-        name: test-results

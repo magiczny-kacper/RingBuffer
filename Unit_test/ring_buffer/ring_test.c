@@ -157,5 +157,5 @@ TEST(ring_tests, read_bytes_to_empty)
       TEST_ASSERT_EQUAL(testValues[i], data);
    }
    TEST_ASSERT_EQUAL(NO_DATA, RingReadByte(&myRing, &data));
-   TEST_FAIL_MESSAGE("initial test setup");
+   //TEST_FAIL_MESSAGE("initial test setup");
 }
