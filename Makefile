@@ -114,19 +114,19 @@ run:
 	@$(OUT_DIR)bin/$(BIN_NAME)
 
 # Creating resulting binary file
-$(OUT_DIR)bin/$(BIN_NAME) : $(TEST_OBJ) $(CODE_OBJ)
+	$(OUT_DIR)bin/$(BIN_NAME) : $(TEST_OBJ) $(CODE_OBJ)
 	@echo 'Linking target: $(OUT_DIR)bin/$(BIN_NAME)'
 	$(CC) $(LD_FLAGS) $(TEST_OBJ) $(CODE_OBJ) $(LD_LIBS) -o $@
 	@echo ''
 
 # Pattern for code under test compilation
-$(OUT_DIR)code/%.o : %.$(C_EXT)
+	$(OUT_DIR)code/%.o : %.$(C_EXT)
 	@echo 'Compiling file: $<'
 	$(CC) -c $(C_FLAGS_CODE) $< -o $@
 	@echo ''
 
 # Pattern for test files compilation
-$(OUT_DIR)test/%.o : %.$(C_EXT)
+	$(OUT_DIR)test/%.o : %.$(C_EXT)
 	@echo 'Compiling file: $<'
 	$(CC) -c $(C_FLAGS_TEST) $< -o $@
 	@echo ''
