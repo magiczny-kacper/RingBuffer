@@ -13,11 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
+    - name: Clean
+      run: make clean
+    - name: make All
+      run: make all
     - name: make distcheck
       run: make distcheck
