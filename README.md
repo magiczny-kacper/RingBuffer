@@ -1,8 +1,9 @@
 # RingBuffer
 ![Build Status](https://github.com/magiczny-kacper/RingBuffer/workflows/BuildWrokflow/badge.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-<br>
-My ring buffer implementation, for embedde applications. Tested on STM32L1, STM32F3, STM32F4 and PIC18F platforms. Includes unit tests.<br/>
+### Short description
+My ring buffer implementation, for embedde applications. Tested on STM32L1, STM32F3, STM32F4 and PIC18F platforms. Includes unit tests.
 * Src - folder containing source code.
 * Unit_test - Unit tests source files.
 * Docs - Documentation files.
@@ -18,11 +19,11 @@ Note: there could be more than one buffer declared.
 ## Writing to buffer
 There are two functions used to write data to buffer. These are:
 * `RingWriteByte` - used to write only one byte to buffer. As parameters, function takse pointer to buffer handler, and as second argument, one byte of data to be written.
-* `RingWriteMultipleBytes` - used to write one or more bytes to buffer. First parameter is pointer to buffer handler, second is pointer to data to be written, and the third is length of data to write. </br>
+* `RingWriteMultipleBytes` - used to write one or more bytes to buffer. First parameter is pointer to buffer handler, second is pointer to data to be written, and the third is length of data to write. </br></br>
 Both functions return `OK` if write was succesfull, or `NO_PLACE` if there was not enough space in buffer, or `NO_PTR` if null pointer was given as an argument.
+## Reading from buffer
 # To do:
-- [ ] Add makefile
 - [x] Add makefile for unit tests
 - [x] Add unit tests files 
 - [x] Generate doxygen docs 
-- [ ] Provide examples
+- [ ] Provide examples - Work in progress
