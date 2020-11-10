@@ -15,5 +15,5 @@ TEST_GROUP_RUNNER(ring_tests)
    RUN_TEST_CASE(ring_tests, write_multiple_bytes_overlap);
    RUN_TEST_CASE(ring_tests, write_multiple_bytes_no_place);
    RUN_TEST_CASE(ring_tests, read_byte_after_init);
-   RUN_TEST_CASE(ring_tests, read_bytes_to_empty);
+   //RUN_TEST_CASE(ring_tests, read_bytes_to_empty);
 }
