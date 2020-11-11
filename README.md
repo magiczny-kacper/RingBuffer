@@ -22,8 +22,18 @@ There are two functions used to write data to buffer. These are:
 * `RingWriteMultipleBytes` - used to write one or more bytes to buffer. First parameter is pointer to buffer handler, second is pointer to data to be written, and the third is length of data to write. </br></br>
 Both functions return `OK` if write was succesfull, or `NO_PLACE` if there was not enough space in buffer, or `NO_PTR` if null pointer was given as an argument.
 ## Reading from buffer
+As before, to read from buffer, there are two functions provided.
+* `RingReadByte` - used to read one byte from given buffer. 
+* `RingReadMultipleBytes` - used to read one or more bytes from buffer.
+## Additional functions
+* `RingGetHead` - returns next array index to write.
+* `RingGetTail` - returns index of the next element from array that will be read.
+* `RingGetMaxSize` - returns buffer size in bytes.
+* `RingGetSpace` - retuns free spce in buffer.
+* `RingGetDataCnt` - returns number of unread bytes in buffer.
+* `RingGetLastElement` - returns last element from buffer without taking it from buffer. could be usable for example when using as UART receive buffer, for waiting if received data string was terminated with specific value.
 # To do:
 - [x] Add makefile for unit tests
 - [x] Add unit tests files 
 - [x] Generate doxygen docs 
-- [ ] Provide examples - Work in progress
+- [x] Provide examples
