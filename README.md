@@ -31,7 +31,7 @@ As before, to read from buffer, there are two functions provided.
 * `RingGetMaxSize` - returns buffer size in bytes.
 * `RingGetSpace` - retuns free spce in buffer.
 * `RingGetDataCnt` - returns number of unread bytes in buffer.
-* `RingGetLastElement` - returns last element from buffer without taking it from buffer. could be usable for example when using as UART receive buffer, for waiting if received data string was terminated with specific value.
+* `RingGetLastElement` - returns last element from buffer without taking it from buffer. Could be usable for example when using as UART receive buffer, for waiting if received data string was terminated with specific value.
 # To do:
 - [x] Add makefile for unit tests
 - [x] Add unit tests files 

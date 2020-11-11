@@ -39,6 +39,7 @@ RingStatus_t RingInit (RingBuffer_t* buffer
 		, uint8_t* arrayBuffer, uint32_t bufferSize
 #endif
 ){
+	if(buffer == NULL) return NO_PTR;
 	memset(buffer, 0, sizeof(RingBuffer_t));
 #if RING_BUFFER_MODE == RING_BUFFER_POINTERS
 	if(arrayBuffer == NULL) return NO_PTR;

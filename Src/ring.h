@@ -10,7 +10,7 @@
  * 
  */
 
-/*! \mainpage My Personal Index Page
+/*! \mainpage My Ring Buffer implementation
  *
  * \section intro_sec Introduction
  *
@@ -24,8 +24,8 @@
  * 
  */
 
-#ifndef SRC_CODE_RING_RING_H_
-#define SRC_CODE_RING_RING_H_
+#ifndef RING_H_
+#define RING_H_
 
 #include <stdint.h>
 
@@ -186,4 +186,4 @@ uint32_t RingGetLastElement(RingBuffer_t* buffer);
  * @}
  * 
  */
-#endif /* SRC_CODE_RING_RING_H_ */
+#endif /* RING_H_ */

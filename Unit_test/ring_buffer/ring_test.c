@@ -31,7 +31,9 @@ TEST(ring_tests, init)
 TEST(ring_tests, init_with_null)
 {
    RingBuffer_t myRing;
+   uint8_t buf[256];
    TEST_ASSERT_EQUAL(NO_PTR, RingInit(&myRing, NULL, 256));
+   TEST_ASSERT_EQUAL(NO_PTR, RingInit(NULL, &buf[0], 256));
 }
 
 TEST(ring_tests, init_with_no_size)
@@ -158,4 +160,24 @@ TEST(ring_tests, read_bytes_to_empty)
    }
    TEST_ASSERT_EQUAL(NO_DATA, RingReadByte(&myRing, &data));
    //TEST_FAIL_MESSAGE("initial test setup");
+}
+
+TEST(ring_tests, get_size)
+{
+   RingBuffer_t myRing;
+   uint8_t arr[10];
+   
+   RingInit(&myRing, &arr[0], 10);
+   TEST_ASSERT_EQUAL(10, RingGetMaxSize(&myRing));
+}
+
+TEST(ring_tests, get_space)
+{
+   RingBuffer_t myRing;
+   uint8_t arr[10];
+   uint8_t data[5] = {1, 1, 1, 1, 1};
+   
+   RingInit(&myRing, &arr[0], 10);
+   RingWriteMultipleBytes(&myRing, &data[0], 5);
+   TEST_ASSERT_EQUAL(4, RingGetSpace(&myRing));
 }
