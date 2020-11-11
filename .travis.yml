@@ -3,5 +3,5 @@ compiler: gcc
 script:
   - make clean
   - make all
-  after_success:
+after_success:
   - bash <(curl -s https://codecov.io/bash)
