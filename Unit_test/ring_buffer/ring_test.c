@@ -5,6 +5,9 @@
 #include "unity/fixture/unity_fixture.h"
 #include "ring.h"
 
+/*
+ * TODO: Fix unit tests for v2.0.0
+ */
 TEST_GROUP(ring_tests);
 
 TEST_SETUP(ring_tests)
@@ -50,14 +53,14 @@ TEST(ring_tests, write_byte)
    uint8_t testValue = 10;
    RingInit(&myRing, &arr[0], 10);
 
-   TEST_ASSERT_EQUAL(OK, RingWriteByte(&myRing, testValue));
+   TEST_ASSERT_EQUAL(OK, RingWriteElement(&myRing, testValue));
    TEST_ASSERT_EQUAL(testValue, arr[0]);
 }
 
 TEST(ring_tests, write_to_null_buf)
 {
    uint8_t testValue = 10;
-   TEST_ASSERT_EQUAL(NO_PTR, RingWriteByte(NULL, testValue));
+   TEST_ASSERT_EQUAL(NO_PTR, RingWriteElement(NULL, testValue));
 }
 
 TEST(ring_tests, write_multiple_bytes)
@@ -68,7 +71,7 @@ TEST(ring_tests, write_multiple_bytes)
    uint8_t testValues[5] = {1,2,3,4,5};
    RingInit(&myRing, &arr[0], 10);
 
-   TEST_ASSERT_EQUAL(OK, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(OK, RingWriteElements(&myRing, &testValues[0], sizeNum));
    TEST_ASSERT_EQUAL_UINT8_ARRAY(&testValues[0], &arr[0], 5);
 }
 
@@ -79,7 +82,7 @@ TEST(ring_tests, write_multiple_bytes_from_null)
    uint8_t sizeNum = 5;
    RingInit(&myRing, &arr[0], 10);
 
-   TEST_ASSERT_EQUAL(NO_PTR, RingWriteMultipleBytes(&myRing, NULL, sizeNum));
+   TEST_ASSERT_EQUAL(NO_PTR, RingWriteElements(&myRing, NULL, sizeNum));
 }
 
 TEST(ring_tests, write_multiple_bytes_to_null)
@@ -87,7 +90,7 @@ TEST(ring_tests, write_multiple_bytes_to_null)
    uint8_t sizeNum = 5;
    uint8_t testValues[5] = {1,2,3,4,5};
 
-   TEST_ASSERT_EQUAL(NO_PTR, RingWriteMultipleBytes(NULL, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(NO_PTR, RingWriteElements(NULL, &testValues[0], sizeNum));
 }
 
 TEST(ring_tests, write_multiple_bytes_no_data)
@@ -98,7 +101,7 @@ TEST(ring_tests, write_multiple_bytes_no_data)
    uint8_t testValues[5] = {1,2,3,4,5};
    RingInit(&myRing, &arr[0], 10);
 
-   TEST_ASSERT_EQUAL(NO_DATA, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(NO_DATA, RingWriteElements(&myRing, &testValues[0], sizeNum));
 }
 
 TEST(ring_tests, write_multiple_bytes_overlap)
@@ -112,7 +115,7 @@ TEST(ring_tests, write_multiple_bytes_overlap)
    // Sztuczne przesunięcie wskaźnika
    myRing.writePtr = 8;
    myRing.readPtr = 8;
-   TEST_ASSERT_EQUAL(OK, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(OK, RingWriteElements(&myRing, &testValues[0], sizeNum));
    TEST_ASSERT_EQUAL_UINT8_ARRAY(&arrRef[0], &arr[0], 10);
 }
 
@@ -124,12 +127,12 @@ TEST(ring_tests, write_multiple_bytes_no_place)
    uint8_t testValues[6] = {1,2,3,4,5,6};
    uint8_t arrRef[10] = {1,2,3,4,5,6,1,2,3,0};
    RingInit(&myRing, &arr[0], 10);
-   TEST_ASSERT_EQUAL(OK, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
-   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
-   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum - 1));
-   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum - 2));
-   TEST_ASSERT_EQUAL(OK, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum - 3));
-   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteMultipleBytes(&myRing, &testValues[0], 1));
+   TEST_ASSERT_EQUAL(OK, RingWriteElements(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteElements(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteElements(&myRing, &testValues[0], sizeNum - 1));
+   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteElements(&myRing, &testValues[0], sizeNum - 2));
+   TEST_ASSERT_EQUAL(OK, RingWriteElements(&myRing, &testValues[0], sizeNum - 3));
+   TEST_ASSERT_EQUAL(NO_PLACE, RingWriteElements(&myRing, &testValues[0], 1));
    TEST_ASSERT_EQUAL_UINT8_ARRAY(&arrRef[0], &arr[0], 10);
 }
 
@@ -153,7 +156,7 @@ TEST(ring_tests, read_bytes_to_empty)
    RingInit(&myRing, &arr[0], 10);
    TEST_ASSERT_EQUAL(NO_DATA, RingReadByte(&myRing, &data));
 
-   TEST_ASSERT_EQUAL(OK, RingWriteMultipleBytes(&myRing, &testValues[0], sizeNum));
+   TEST_ASSERT_EQUAL(OK, RingWriteElements(&myRing, &testValues[0], sizeNum));
    for(uint8_t i = 0; i < sizeNum; i++){
       TEST_ASSERT_EQUAL(OK, RingReadByte(&myRing, &data));
       TEST_ASSERT_EQUAL(testValues[i], data);
@@ -168,7 +171,7 @@ TEST(ring_tests, get_size)
    uint8_t arr[10];
    
    RingInit(&myRing, &arr[0], 10);
-   TEST_ASSERT_EQUAL(10, RingGetMaxSize(&myRing));
+   TEST_ASSERT_EQUAL(10, RingGetElementsCapacity(&myRing));
 }
 
 TEST(ring_tests, get_space)
@@ -178,6 +181,6 @@ TEST(ring_tests, get_space)
    uint8_t data[5] = {1, 1, 1, 1, 1};
    
    RingInit(&myRing, &arr[0], 10);
-   RingWriteMultipleBytes(&myRing, &data[0], 5);
+   RingWriteElements(&myRing, &data[0], 5);
    TEST_ASSERT_EQUAL(4, RingGetSpace(&myRing));
 }

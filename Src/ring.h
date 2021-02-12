@@ -3,8 +3,8 @@
  * @author Kacper Brzostowski (kapibrv97@gmail.com)
  * @link https://github.com/magiczny-kacper
  * @brief FIFO ring buffer driver library header.
- * @version 1.1.0
- * @date 2020-10-11
+ * @version 2.0.0
+ * @date 2021-02-12
  * 
  * @copyright GNU General Public License v3.0
  * 
@@ -35,28 +35,6 @@
  * @{
  */
 
-/**< Ring buffer will oprate on array pointer. */
-#define RING_BUFFER_POINTERS 1
-
-/**< Ring buffer will operate on fixed size array. */
-#define RING_BUFFER_ARRAYS 0
-
-/**< Selected ring buffer mode. */
-#define RING_BUFFER_MODE RING_BUFFER_POINTERS
-
-#ifndef RING_BUFFER_MODE
-#define RING_BUFFER_MODE RING_BUFFER_ARRAYS
-#endif
-
-#if RING_BUFFER_MODE == RING_BUFFER_ARRAYS
-	/**< Fixed buffer size when @ref RING_BUFFER_MODE is set to @ref RING_BUFFER_ARRAYS */
-	#define BUFFER_SIZE 256
-#endif
-
-#ifndef RING_BUFFER_MODE 
-#error Define Ring buffer mode.
-#endif
-
 /**
  * @brief Ring buffer status enumerator.
  * 
@@ -73,15 +51,14 @@ typedef enum{
  * 
  */
 typedef struct{
-	uint32_t size; /**< Size of buffer. */
+	size_t size; /**< Size of buffer given in elements. */
+	size_t elementSize; /**< Size of one buffer element. */
+	size_t sizeB;
+	size_t elementsInBuffer;
 	uint32_t writePtr; /**< Buffer next write pointer. */
 	uint32_t readPtr; /**< Buffer next read pointer. */
 	uint32_t place; /**< Place available in buffer. */
-#if RING_BUFFER_MODE == RING_BUFFER_ARRAYS
-	uint8_t buffer[BUFFER_SIZE]; /**< Actual buffer. */
-#elif RING_BUFFER_MODE == RING_BUFFER_POINTERS
-	uint8_t* buffer; /**< Pointer to array holding ring buffer. */
-#endif
+	void* buffer; /**< Pointer to array holding ring buffer. */
 } RingBuffer_t;
 
 /**
@@ -90,7 +67,7 @@ typedef struct{
  * @param buffer 	Pointer to buffer structure, which size has to be returned.
  * @retval 			Size of pointed ring buffer.
  */
-uint32_t RingGetMaxSize (RingBuffer_t* buffer);
+uint32_t RingGetElementsCapacity (RingBuffer_t* buffer);
 
 /**
  * @brief Function that returns available space in selected buffer.
@@ -114,11 +91,7 @@ uint32_t RingGetDataCnt (RingBuffer_t* buffer);
  * @param buffer 	Pointer to buffer structure that has to be initialized.
  * @return @ref RingStatus_t
  */
-RingStatus_t RingInit (RingBuffer_t* buffer
-#if RING_BUFFER_MODE == RING_BUFFER_POINTERS
-	, uint8_t* arrayBuffer, uint32_t bufferSize
-#endif
-);
+RingStatus_t RingInit (RingBuffer_t* buffer, void* arrayBuffer, size_t bufferSize, size_t elementSize);
 
 /**
  * @brief Addes one byte to the end of buffer.
@@ -127,7 +100,7 @@ RingStatus_t RingInit (RingBuffer_t* buffer
  * @param data Data to write.
  * @return RingStatus_t Status of write process.
  */
-RingStatus_t RingWriteByte (RingBuffer_t* buffer, uint8_t data);
+RingStatus_t RingWriteElement (RingBuffer_t* buffer, void* data);
 
 /**
  * @brief Writes multiple bytes to buffer.
@@ -137,7 +110,7 @@ RingStatus_t RingWriteByte (RingBuffer_t* buffer, uint8_t data);
  * @param len Length of data.
  * @return RingStatus_t Write status.
  */
-RingStatus_t RingWriteMultipleBytes (RingBuffer_t* buffer, uint8_t* data, uint32_t len);
+RingStatus_t RingWriteElements (RingBuffer_t* buffer, void* data, size_t len);
 
 /**
  * @brief Reads one byte from buffer.
@@ -146,7 +119,7 @@ RingStatus_t RingWriteMultipleBytes (RingBuffer_t* buffer, uint8_t* data, uint32
  * @param data Pointer to save data.
  * @return RingStatus_t Read status.
  */
-RingStatus_t RingReadByte (RingBuffer_t* buffer, uint8_t* data);
+RingStatus_t RingReadElement (RingBuffer_t* buffer, void* data);
 
 /**
  * @brief Reads multiple bytes from buffer.
@@ -156,7 +129,7 @@ RingStatus_t RingReadByte (RingBuffer_t* buffer, uint8_t* data);
  * @param len Length of data to read.
  * @return RingStatus_t Read status.
  */
-RingStatus_t RingReadMultipleBytes (RingBuffer_t* buffer, uint8_t* data, uint32_t len);
+RingStatus_t RingReadElements (RingBuffer_t* buffer, void* data, uint32_t len);
 
 /**
  * @brief Returns write pointer of buffer.
