@@ -153,7 +153,7 @@ uint32_t RingGetTail (RingBuffer_t* buffer);
  * @param buffer Buffer to read.
  * @return uint32_t Last byte in buffer.
  */
-uint32_t RingGetLastElement(RingBuffer_t* buffer);
+RingStatus_t RingGetLastElement(RingBuffer_t* buffer, void* element);
 
 /**
  * @}

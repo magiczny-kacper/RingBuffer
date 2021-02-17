@@ -167,10 +167,14 @@ uint32_t RingGetTail (RingBuffer_t* buffer){
 	return buffer -> readPtr;
 }
 
-uint32_t RingGetLastElement(RingBuffer_t* buffer){
-	uint8_t data;
-	data = *(buffer -> buffer + buffer -> writePtr);
-	return data;
+RingStatus_t RingGetLastElement(RingBuffer_t* buffer, void* element){
+	RingStatus_t ret = OK;
+	if(buffer && element){
+		memcpy(element, buffer -> buffer + buffer -> writePtr, buffer -> elementSize);
+	}else{
+		ret = NO_PTR;
+	}
+	return ret;
 }
 
 /**
