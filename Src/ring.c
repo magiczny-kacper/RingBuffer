@@ -33,12 +33,16 @@ uint32_t RingGetDataCnt (RingBuffer_t* buffer){
 	return buffer -> size - RingGetSpace(buffer);
 }
 
-/* TODO: Add null pointer exceptions. */
+/* DONE: Add null pointer exceptions. */
 RingStatus_t RingInit (RingBuffer_t* buffer, void* arrayBuffer, size_t bufferSize, size_t elementSize){
-	if(buffer == NULL) return NO_PTR;
+	if(NULL == buffer) return NO_PTR;
+	if(NULL == arrayBuffer) return NO_PTR;
+
 	memset(buffer, 0, sizeof(RingBuffer_t));
+
 	if(arrayBuffer == NULL) return NO_PTR;
 	if(bufferSize <= 0) return NO_DATA;
+
 	buffer -> buffer = arrayBuffer;
 	buffer -> size = bufferSize;
 	buffer -> place = buffer -> size - 1;
@@ -46,21 +50,27 @@ RingStatus_t RingInit (RingBuffer_t* buffer, void* arrayBuffer, size_t bufferSiz
 	buffer -> readPtr = 0;
 	buffer -> elementSize = elementSize;
 	buffer -> sizeB = buffer -> elementSize * buffer -> size;
+
 	memset(buffer -> buffer, 0, buffer -> sizeB);
 	return OK;
 }
 
 RingStatus_t RingWriteElement (RingBuffer_t* buffer, void* data){
 	RingStatus_t retval = OK;
+
 	if(buffer == NULL) return NO_PTR;
+	if(data == NULL) return NO_PTR;
+	if(buffer -> buffer == NULL) return NO_PTR;
+
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempTail = buffer -> readPtr;
 	size_t elSize = buffer -> elementSize;
+	size_t bufferSize = buffer -> sizeB;
+
 	void* wrPtr;
-	if(buffer -> buffer == NULL) return NO_PTR;
 	wrPtr = buffer -> buffer + tempHead;
 
-	tempHead = MODULO_BUF(tempHead + elSize, buffer -> sizeB);
+	tempHead = MODULO_BUF(tempHead + elSize, bufferSize);
 	if(tempHead != tempTail){
 		memcpy(wrPtr, data, elSize);
 		buffer -> writePtr = tempHead;
@@ -73,23 +83,27 @@ RingStatus_t RingWriteElement (RingBuffer_t* buffer, void* data){
 
 RingStatus_t RingWriteElements (RingBuffer_t* buffer, void* data, size_t len){
 	RingStatus_t retval = OK;
+
 	if(buffer == NULL) return NO_PTR;
 	if(data == NULL) return NO_PTR;
+	if(buffer -> buffer == NULL) return NO_PTR;
 	if(len <= 0) return NO_DATA;
+
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempPlace = buffer -> place;
 
 	size_t elSize = buffer -> elementSize;
-	size_t dataSizeB = elSize * len;
-
+	size_t bytesToWrite = elSize * len;
+	size_t bufferSize = buffer -> size;
+	size_t bufferSizeB = buffer -> sizeB;
 	uint8_t* wrPtr;
-	if(buffer -> buffer == NULL) return NO_PTR;
+	
 	wrPtr = buffer -> buffer + tempHead;
 
 	if(tempPlace >= len){
-		if(tempHead + len >= dataSizeB){
+		if(tempHead + len >= bytesToWrite){
 			uint32_t temp1, temp2;
-			temp1 = buffer -> sizeB - tempHead;
+			temp1 = bufferSizeB - tempHead;
 			memcpy(wrPtr, data, temp1);
 			data += temp1;
 			temp2 = len - temp1;
@@ -97,7 +111,7 @@ RingStatus_t RingWriteElements (RingBuffer_t* buffer, void* data, size_t len){
 			memcpy(wrPtr, data, temp2);	
 		}else{
 			memcpy(wrPtr, data, len);
-			tempHead = MODULO_BUF(tempHead + len, buffer -> size);
+			tempHead = MODULO_BUF(tempHead + len, bufferSize);
 		}
 		tempPlace -= len;
 		buffer -> writePtr = tempHead;
@@ -114,12 +128,14 @@ RingStatus_t RingReadElement (RingBuffer_t* buffer, void* data){
 	uint32_t tempHead = buffer -> writePtr;
 	uint32_t tempTail = buffer -> readPtr;
 	uint32_t tempPlace = buffer -> place;
-	uint8_t* wrPtr;
+	size_t bufferSize = buffer -> size;
+	size_t elSize = buffer -> elementSize;
+	void* wrPtr;
 	wrPtr = buffer -> buffer + tempTail;
 
 	if(tempHead != tempTail){
-		*data = *wrPtr;
-		tempTail = MODULO_BUF(tempTail + 1, buffer -> size);
+		memcpy(data, wrPtr, elSize);
+		tempTail = MODULO_BUF(tempTail + 1, bufferSize);
 		tempPlace++;
 		buffer -> readPtr = tempTail;
 		buffer -> place = tempPlace;

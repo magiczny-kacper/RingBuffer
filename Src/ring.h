@@ -53,8 +53,8 @@ typedef enum{
 typedef struct{
 	size_t size; /**< Size of buffer given in elements. */
 	size_t elementSize; /**< Size of one buffer element. */
-	size_t sizeB;
-	size_t elementsInBuffer;
+	size_t sizeB; /**< Size of buffer given in bytes. */
+	size_t elementsInBuffer; /**< Current count of elements in buffer. */
 	uint32_t writePtr; /**< Buffer next write pointer. */
 	uint32_t readPtr; /**< Buffer next read pointer. */
 	uint32_t place; /**< Place available in buffer. */
