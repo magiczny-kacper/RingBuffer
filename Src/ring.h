@@ -129,7 +129,7 @@ RingStatus_t RingReadElement (RingBuffer_t* buffer, void* data);
  * @param len Length of data to read.
  * @return RingStatus_t Read status.
  */
-RingStatus_t RingReadElements (RingBuffer_t* buffer, void* data, uint32_t len);
+RingStatus_t RingReadElements (RingBuffer_t* buffer, void* data, size_t len);
 
 /**
  * @brief Returns write pointer of buffer.
