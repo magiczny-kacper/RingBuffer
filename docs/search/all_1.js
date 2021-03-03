@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['my_20personal_20index_20page_1',['My Personal Index Page',['../index.html',1,'']]],
-  ['modulo_5fbuf_2',['MODULO_BUF',['../d9/de9/ring_8c.html#abb3a8b94be0326cc88cfa3d0dbbc9178',1,'ring.c']]]
+  ['no_5fdata_2',['NO_DATA',['../dc/dd2/group__Ring__Buffer.html#ggac183adbc0cfacea4cfc637c6aaaf4880ad2c08fb8362bb7bc8b17aa5a6df6e498',1,'ring.h']]],
+  ['no_5fplace_3',['NO_PLACE',['../dc/dd2/group__Ring__Buffer.html#ggac183adbc0cfacea4cfc637c6aaaf4880ac8b52f1f9691d409f9f3e2ec93ee570a',1,'ring.h']]],
+  ['no_5fptr_4',['NO_PTR',['../dc/dd2/group__Ring__Buffer.html#ggac183adbc0cfacea4cfc637c6aaaf4880a13b7b7f3f849a0fd8bcfb2d3a99c48b0',1,'ring.h']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ok_6',['OK',['../dc/dd2/group__Ring__Buffer.html#ggac183adbc0cfacea4cfc637c6aaaf4880a2bc49ec37d6a5715dd23e85f1ff5bb59',1,'ring.h']]]
+  ['place_6',['place',['../da/d06/structRingBuffer__t.html#a96f39a6a1000b3f80a0392d136f7f644',1,'RingBuffer_t']]]
 ];
