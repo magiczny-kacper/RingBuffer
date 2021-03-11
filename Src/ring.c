@@ -14,6 +14,7 @@
  * @copyright GNU General Public License v3.0
  * @{
  */
+#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 #include "ring.h"
