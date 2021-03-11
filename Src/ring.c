@@ -55,6 +55,19 @@ RingStatus_t RingInit (RingBuffer_t* buffer, void* arrayBuffer, size_t bufferSiz
 	return OK;
 }
 
+RingStatus_t RingInitAlloc (RingBuffer_t* buffer, size_t bufferSize, size_t elementSize){
+	void* ptr; 
+	size_t reqSize = elementSize * bufferSize;
+	if(NULL == buffer){
+		return NO_PTR;
+	}
+	ptr = malloc(reqSize);
+	if(NULL == ptr){
+		return NO_PTR;
+	}
+	return RingInit(buffer, ptr, bufferSize, elementSize);
+}
+
 RingStatus_t RingWriteElement (RingBuffer_t* buffer, void* data){
 	RingStatus_t retval = OK;
 

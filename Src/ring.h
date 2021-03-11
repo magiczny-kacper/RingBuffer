@@ -89,9 +89,22 @@ uint32_t RingGetDataCnt (RingBuffer_t* buffer);
  * @brief Function to initialize selected ring buffer.
  * 
  * @param buffer 	Pointer to buffer structure that has to be initialized.
- * @return @ref RingStatus_t
+ * @param arrayBuffer Pointer to array used by buffer
+ * @param bufferSize Size of buffer given in elements
+ * @param elementSize Size of one element
+ * @return RingStatus_t 
  */
 RingStatus_t RingInit (RingBuffer_t* buffer, void* arrayBuffer, size_t bufferSize, size_t elementSize);
+
+/**
+ * @brief Function to initialize ring buffer with memory allocation
+ * 
+ * @param buffer Pointer to buffer structure that has to be initialized.
+ * @param bufferSize Size of buffer given in elements
+ * @param elementSize Size of one element
+ * @return RingStatus_t 
+ */
+RingStatus_t RingInitAlloc (RingBuffer_t* buffer, size_t bufferSize, size_t elementSize);
 
 /**
  * @brief Addes one byte to the end of buffer.
