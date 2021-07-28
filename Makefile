@@ -153,16 +153,21 @@
 CC=gcc
 CFLAGS=-c -g -Wall
 
+TEST_CFLAGS=-Wall
+
 AR=ar
 ARFLAGS=-rc
 
 # Source directory
 SRC=Src
+TEST_SRC=tests
 
 OBJ=build/obj
+TEST_OBJ=tests/build
 
 # Returns all files with *.c extension from $(SRC) directory.
 SRCS=$(wildcard $(SRC)/*.c)
+TEST_SRCS=$(wildcard $(SRC)/*.c)
 
 # This takes $(SRCS) as input,
 # if the $(SRC)/%.c pattern is matched,
@@ -170,14 +175,11 @@ SRCS=$(wildcard $(SRC)/*.c)
 # This way, it converts the list of C files specified in SRCS to list of .o
 # files, to build object files.
 OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+TEST_OBJS=$(patsubst $(TEST_SRC)/%.c, $(TEST_OBJ)/%.o, $(TEST_SRCS))
 
 BINDIR=build/bin
 BINNAME=RingBuffer
 BIN=$(BINDIR)/$(BINNAME)
-
-LDFLAGS=-LCriterion -lcriterion
-
-DOCDIR=docs
 
 all: clean $(BIN)
 
