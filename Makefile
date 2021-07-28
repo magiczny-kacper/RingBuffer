@@ -38,6 +38,12 @@ STATICLIB=$(BIN).a
 
 CRITERION_FLAGS=--verbose --full-stats
 
+init:
+	mkdir -p $(TEST_BINDIR)
+	mkdir -p $(TEST_OBJ)
+	mkdir -p $(BINDIR)
+	mkdir -p $(OBJ)
+
 all: lib test docs
 
 lib: $(BIN)
