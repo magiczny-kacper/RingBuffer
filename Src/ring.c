@@ -115,7 +115,7 @@ RingStatus_t RingWriteElements (RingBuffer_t* buffer, void* data, size_t len){
 	wrPtr = buffer -> buffer + tempHead;
 
 	if(tempPlace >= len){
-		if(tempHead + len >= bytesToWrite){
+		if(tempHead + bytesToWrite >= bufferSizeB){
 			uint32_t temp1, temp2;
 			temp1 = bufferSizeB - tempHead;
 			memcpy(wrPtr, data, temp1);
