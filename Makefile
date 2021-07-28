@@ -175,9 +175,9 @@ BINDIR=build/bin
 BINNAME=RingBuffer
 BIN=$(BINDIR)/$(BINNAME)
 
-# Removes compiled files
-clean:
-	rm -r $(BINDIR)/* $(OBJ)/*
+LDFLAGS=-LCriterion -lcriterion
+
+DOCDIR=docs
 
 all: clean $(BIN)
 
@@ -195,4 +195,24 @@ print: $(SRCS) $(wildcard $(SRC)/*.h)
 	ls -la $?
 
 test:
-	$(info This is empty. For now.)
+	$(CC) $(CFLAGS) -c tests/test.c -o tests/test.o
+	$(CC) $(CFLAGS) tests/test.o Criterion/criterion.so
+#	$(info This is empty. For now.)
+
+# To assure it will work, whether docs directory is present or not
+.PHONY: docs
+docs:
+	ifeq (, $(shell which doxygen))
+	$(error No doxygen installed. Cannot generate docs.)
+	endif
+	rm -rf docs
+	doxygen doxyConfig
+
+cicd_run:
+	$(error Thi is supposed to be run by CI/CD system. Run unit tests, and generate docs if tests passed.)
+
+# To assure it will work
+.PHONY: clean
+# Removes compiled files
+clean:
+	rm -r $(BINDIR)/* $(OBJ)/*
