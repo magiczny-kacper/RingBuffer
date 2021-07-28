@@ -6,11 +6,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install doxygen
+      run: sudo apt-get install -y doxygen
     - name: Clean
       run: make clean_all
     - name: Run unit tests, generate docs
