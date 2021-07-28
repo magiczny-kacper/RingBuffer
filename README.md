@@ -49,3 +49,12 @@ waiting if received data string was terminated with specific value.
 - [x] Add unit tests files
 - [x] Generate doxygen docs
 - [x] Provide examples
+
+# Unit tests
+For unit teste Criterion needs to be installed in your system. It can be done by:
+
+```bash
+wget -qO- https://github.com/Snaipe/Criterion/releases/download/v2.3.3/criterion-v2.3.3-linux-x86_64.tar.bz2 | tar -xjvf -
+sudo cp -a criterion-v2.3.3/lib/. /usr/lib
+sudo cp -a criterion-v2.3.3/include/. /usr/include
+```
