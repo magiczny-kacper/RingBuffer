@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Init
+      run: make init
     - name: Clean
       run: make clean_all
     - name: Run unit tests, generate docs
