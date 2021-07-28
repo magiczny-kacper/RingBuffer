@@ -2,12 +2,11 @@ name: BuildWrokflow
 
 on:
   pull_request:
-    branches: [ master_v2 ]
+    branches: [ master_v1 ]
   workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
