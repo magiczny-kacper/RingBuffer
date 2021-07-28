@@ -1,0 +1,3 @@
+[submodule "Criterion"]
+	path = Criterion
+	url = git@github.com:Snaipe/Criterion.git
