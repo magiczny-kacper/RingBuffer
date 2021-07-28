@@ -1,10 +1,8 @@
 name: BuildWrokflow
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ master_v2 ]
 
 jobs:
   build:
@@ -14,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Clean
-      run: make clean
-    - name: Run unit tests
+      run: make clean_all
+    - name: Run unit tests, generate docs
       run: make all
