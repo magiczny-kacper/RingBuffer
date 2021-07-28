@@ -44,7 +44,7 @@ init:
 	mkdir -p $(BINDIR)
 	mkdir -p $(OBJ)
 
-all: lib test docs
+all: lib test
 
 lib: $(BIN)
 	cp $(BINDIR)/* $(LIBDIR)/
