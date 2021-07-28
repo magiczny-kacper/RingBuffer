@@ -36,9 +36,15 @@ LIBDIR=lib
 TEST_LD_FLAGS=-I$(LIBDIR)  -L$(LIBDIR) -l$(BINNAME) -lcriterion
 STATICLIB=$(BIN).a
 
-CRITERION_FLAGS=--verbose
+CRITERION_FLAGS=--verbose --full-stats
 
-all: lib test docs
+init:
+	mkdir -p $(TEST_BINDIR)
+	mkdir -p $(TEST_OBJ)
+	mkdir -p $(BINDIR)
+	mkdir -p $(OBJ)
+
+all: lib test
 
 lib: $(BIN)
 	cp $(BINDIR)/* $(LIBDIR)/
@@ -72,11 +78,11 @@ cicd_run:
 .PHONY: clean
 # Removes compiled files
 clean:
-	rm -r $(BINDIR)/* $(OBJ)/*
+	$(RM) -rf $(BINDIR)/* $(OBJ)/*
 
 .PHONY: clean_test
 clean_test:
-	rm -rf $(TEST_BINDIR)/* $(TEST_OBJ)/*
+	$(RM) -rf $(TEST_BINDIR)/* $(TEST_OBJ)/*
 
 .PHONY: clean_all
 clean_all: clean clean_test
@@ -87,7 +93,7 @@ docs:
 	ifeq (, $(shell which doxygen))
 	$(error No doxygen installed. Cannot generate docs.)
 	endif
-	rm -rf docs
+	$(RM) -rf docs
 	doxygen doxyConfig
 
 # Prints all .h and .c files
