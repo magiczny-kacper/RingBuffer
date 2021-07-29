@@ -1,7 +1,0 @@
-<map id="Src/ring.c" name="Src/ring.c">
-<area shape="rect" id="node1" title="Ring buffer library source file." alt="" coords="102,5,179,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,68,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="150,155,214,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="143,80,207,107"/>
-<area shape="rect" id="node5" href="$d0/d6d/ring_8h.html" title="FIFO ring buffer driver library header." alt="" coords="231,80,285,107"/>
-</map>
