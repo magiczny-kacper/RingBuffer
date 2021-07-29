@@ -26,3 +26,8 @@ jobs:
       uses: mattnotmitt/doxygen-action@v1.1.0
       with:
         doxyfile-path: "./doxyConfig"
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: master_v1
+        folder: docs
