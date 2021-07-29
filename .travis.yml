@@ -1,7 +1,0 @@
-language: C
-compiler: gcc
-script:
-  - make clean
-  - make all
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
