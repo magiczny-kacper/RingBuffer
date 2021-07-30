@@ -9,23 +9,23 @@ Test(ring_tests, dummy){
 }
 
 Test(ring_tests, init){
-    RingBuffer_t myRing;
-    uint8_t buffer [256];
-    RingInit(&myRing, &buffer[0], 256, sizeof(uint8_t));
-    cr_assert(256 == myRing.size, "Excepted 'size' to be 256");
-    cr_assert(buffer == myRing.buffer, "Excepted pointer to be equal");
+   RingBuffer_t myRing;
+   uint8_t buffer [256];
+   RingInit(&myRing, &buffer[0], 256, sizeof(uint8_t));
+   cr_assert(256 == myRing.size, "Excepted 'size' to be 256");
+   cr_assert(buffer == myRing.buffer, "Excepted pointer to be equal");
 }
 
 Test(ring_tests, init_with_null){
-    RingStatus_t ret;
-    RingBuffer_t myRing;
-    uint8_t buf[256];
-    ret = RingInit(&myRing, NULL, 256, sizeof(uint8_t));
-    cr_assert(ret == NO_PTR, "Excepted %d, got %d",
-        NO_PTR, ret);
-    ret = RingInit(NULL, &buf[0], 256, sizeof(uint8_t));
-    cr_assert(ret == NO_PTR, "Excepted %d, got %d",
-        NO_PTR, ret);
+   RingStatus_t ret;
+   RingBuffer_t myRing;
+   uint8_t buf[256];
+   ret = RingInit(&myRing, NULL, 256, sizeof(uint8_t));
+   cr_assert(ret == NO_PTR, "Excepted %d, got %d",
+      NO_PTR, ret);
+   ret = RingInit(NULL, &buf[0], 256, sizeof(uint8_t));
+   cr_assert(ret == NO_PTR, "Excepted %d, got %d",
+      NO_PTR, ret);
 }
 
 Test(ring_tests, init_with_no_size){
