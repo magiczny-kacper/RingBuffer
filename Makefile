@@ -43,6 +43,7 @@ init:
 	mkdir -p $(TEST_OBJ)
 	mkdir -p $(BINDIR)
 	mkdir -p $(OBJ)
+	mkdir -p $(LIBDIR)
 
 all: lib test
 
@@ -79,6 +80,7 @@ cicd_run:
 # Removes compiled files
 clean:
 	$(RM) -rf $(BINDIR)/* $(OBJ)/*
+	$(RM) -rf $(LIBDIR)/*
 
 .PHONY: clean_test
 clean_test:
