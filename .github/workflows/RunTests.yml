@@ -2,7 +2,7 @@ name: BuildWrokflow
 
 on:
   pull_request:
-    branches: [ master_v1 ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:

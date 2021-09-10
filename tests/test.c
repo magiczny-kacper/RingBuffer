@@ -4,11 +4,11 @@
 #include <ring.h>
 #include <stdint.h>
 
-Test(ring_tests, dummy){
-    cr_assert(1, "Hello");
+Test(ring_tests, dummy) {
+     cr_assert(1, "Hello");
 }
 
-Test(ring_tests, init){
+Test(ring_tests, init) {
     RingBuffer_t myRing;
     uint8_t buffer [256];
     RingInit(&myRing, &buffer[0], 256, sizeof(uint8_t));
@@ -16,7 +16,7 @@ Test(ring_tests, init){
     cr_assert(buffer == myRing.buffer, "Excepted pointer to be equal");
 }
 
-Test(ring_tests, init_with_null){
+Test(ring_tests, init_with_null) {
     RingStatus_t ret;
     RingBuffer_t myRing;
     uint8_t buf[256];
@@ -28,7 +28,7 @@ Test(ring_tests, init_with_null){
         NO_PTR, ret);
 }
 
-Test(ring_tests, init_with_no_size){
+Test(ring_tests, init_with_no_size) {
     RingStatus_t ret;
     RingBuffer_t myRing;
     uint8_t arr[10];
@@ -37,135 +37,129 @@ Test(ring_tests, init_with_no_size){
     NO_DATA, ret);
 }
 
-Test(ring_tests, write_byte){
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t testValue = 10;
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+Test(ring_tests, write_byte) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t testValue = 10;
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
 
-   cr_assert(OK == RingWriteElement(&myRing, &testValue));
-   cr_assert(testValue == arr[0]);
+    cr_assert(OK == RingWriteElement(&myRing, &testValue));
+    cr_assert(testValue == arr[0]);
 }
 
-Test(ring_tests, write_to_null_buf){
-   uint8_t testValue = 10;
-   cr_assert(NO_PTR == RingWriteElement(NULL, &testValue));
+Test(ring_tests, write_to_null_buf) {
+    uint8_t testValue = 10;
+    cr_assert(NO_PTR == RingWriteElement(NULL, &testValue));
 }
 
-Test(ring_tests, write_multiple_bytes){
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 5;
-   uint8_t testValues[5] = {1,2,3,4,5};
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+Test(ring_tests, write_multiple_bytes) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 5;
+    uint8_t testValues[5] = {1,2,3,4,5};
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
 
-   cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
-   cr_assert_arr_eq(testValues, arr, sizeNum);
+    cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    cr_assert_arr_eq(testValues, arr, sizeNum);
 }
 
-Test(ring_tests, write_multiple_bytes_from_null){
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 5;
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+Test(ring_tests, write_multiple_bytes_from_null) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 5;
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
 
-   cr_assert(NO_PTR == RingWriteElements(&myRing, NULL, sizeNum));
+    cr_assert(NO_PTR == RingWriteElements(&myRing, NULL, sizeNum));
 }
 
-Test(ring_tests, write_multiple_bytes_to_null){
-   uint8_t sizeNum = 5;
-   uint8_t testValues[5] = {1,2,3,4,5};
+Test(ring_tests, write_multiple_bytes_to_null) {
+    uint8_t sizeNum = 5;
+    uint8_t testValues[5] = {1,2,3,4,5};
 
-   cr_assert(NO_PTR == RingWriteElements(NULL, &testValues[0], sizeNum));
+    cr_assert(NO_PTR == RingWriteElements(NULL, &testValues[0], sizeNum));
 }
 
-Test(ring_tests, write_multiple_bytes_no_data){
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 0;
-   uint8_t testValues[5] = {1,2,3,4,5};
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+Test(ring_tests, write_multiple_bytes_no_data) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 0;
+    uint8_t testValues[5] = {1,2,3,4,5};
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
 
-   cr_assert(NO_DATA == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    cr_assert(NO_DATA == RingWriteElements(&myRing, &testValues[0], sizeNum));
 }
 
-Test(ring_tests, write_multiple_bytes_overlap)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 5;
-   uint8_t testValues[5] = {1,2,3,4,5};
-   uint8_t arrRef[10] = {3,4,5,0,0,0,0,0,1,2};
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   // Sztuczne przesunięcie wskaźnika
-   myRing.writePtr = 8;
-   myRing.readPtr = 8;
-   cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
-   cr_assert_arr_eq(&arrRef[0], &arr[0], 10);
+Test(ring_tests, write_multiple_bytes_overlap) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 5;
+    uint8_t testValues[5] = {1,2,3,4,5};
+    uint8_t arrRef[10] = {3,4,5,0,0,0,0,0,1,2};
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    // Sztuczne przesunięcie wskaźnika
+    myRing.writePtr = 8;
+    myRing.readPtr = 8;
+    cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    cr_assert_arr_eq(&arrRef[0], &arr[0], 10);
 }
 
-Test(ring_tests, write_multiple_bytes_no_place)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 6;
-   uint8_t testValues[6] = {1,2,3,4,5,6};
-   uint8_t arrRef[10] = {1,2,3,4,5,6,1,2,3,0};
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
-   cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum));
-   cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum - 1));
-   cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum - 2));
-   cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum - 3));
-   cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], 1));
-   cr_assert_arr_eq(&arrRef[0], &arr[0], 10);
+Test(ring_tests, write_multiple_bytes_no_place) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 6;
+    uint8_t testValues[6] = {1,2,3,4,5,6};
+    uint8_t arrRef[10] = {1,2,3,4,5,6,1,2,3,0};
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum - 1));
+    cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], sizeNum - 2));
+    cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum - 3));
+    cr_assert(NO_PLACE == RingWriteElements(&myRing, &testValues[0], 1));
+    cr_assert_arr_eq(&arrRef[0], &arr[0], 10);
 }
 
-Test(ring_tests, read_byte_after_init)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t data;
+Test(ring_tests, read_byte_after_init) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t data;
 
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   cr_assert(NO_DATA == RingReadElement(&myRing, &data));
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    cr_assert(NO_DATA == RingReadElement(&myRing, &data));
 }
 
-Test(ring_tests, read_bytes_to_empty)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t sizeNum = 6;
-   uint8_t testValues[6] = {1,2,3,4,5,6};
-   uint8_t data;
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   cr_assert(NO_DATA == RingReadElement(&myRing, &data));
+Test(ring_tests, read_bytes_to_empty) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t sizeNum = 6;
+    uint8_t testValues[6] = {1,2,3,4,5,6};
+    uint8_t data;
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    cr_assert(NO_DATA == RingReadElement(&myRing, &data));
 
-   cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
-   for(uint8_t i = 0; i < sizeNum; i++){
-      cr_assert(OK == RingReadElement(&myRing, &data));
-      cr_assert(testValues[i] == data);
-   }
-   cr_assert(NO_DATA == RingReadElement(&myRing, &data));
-   //TEST_FAIL_MESSAGE("initial test setup");
+    cr_assert(OK == RingWriteElements(&myRing, &testValues[0], sizeNum));
+    for(uint8_t i = 0; i < sizeNum; i++){
+        cr_assert(OK == RingReadElement(&myRing, &data));
+        cr_assert(testValues[i] == data);
+    }
+    cr_assert(NO_DATA == RingReadElement(&myRing, &data));
+    //TEST_FAIL_MESSAGE("initial test setup");
 }
 
-Test(ring_tests, get_size)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
+Test(ring_tests, get_size) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
 
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   cr_assert(10 == RingGetElementsCapacity(&myRing));
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    cr_assert(10 == RingGetElementsCapacity(&myRing));
 }
 
-Test(ring_tests, get_space)
-{
-   RingBuffer_t myRing;
-   uint8_t arr[10];
-   uint8_t data[5] = {1, 1, 1, 1, 1};
+Test(ring_tests, get_space) {
+    RingBuffer_t myRing;
+    uint8_t arr[10];
+    uint8_t data[5] = {1, 1, 1, 1, 1};
 
-   RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
-   RingWriteElements(&myRing, &data[0], 5);
-   cr_assert(4 == RingGetSpace(&myRing));
+    RingInit(&myRing, &arr[0], 10, sizeof(uint8_t));
+    RingWriteElements(&myRing, &data[0], 5);
+    cr_assert(4 == RingGetSpace(&myRing));
 }
