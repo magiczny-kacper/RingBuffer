@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include "Src/ring.h"
+#include "ring.h"
 
 /**< Modulo for operations on array indexes. */
 #define MODULO_BUF(value, max) ((value) % (max))
