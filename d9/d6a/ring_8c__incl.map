@@ -1,7 +1,12 @@
 <map id="Src/ring.c" name="Src/ring.c">
-<area shape="rect" id="node1" title="Ring buffer library source file." alt="" coords="102,5,179,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,68,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="150,155,214,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="143,80,207,107"/>
-<area shape="rect" id="node5" href="$d0/d6d/ring_8h.html" title="FIFO ring buffer driver library header." alt="" coords="231,80,285,107"/>
+<area shape="rect" id="Node000001" title="Ring buffer library source file." alt="" coords="101,5,177,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,68,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,34,67,73,64,68,120,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="148,153,211,178"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,32,129,65,129,85,132,104,143,123,157,140,153,144,138,126,127,106,123,85,124,65,132,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="142,79,206,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="147,30,164,64,159,67,142,32"/>
+<area shape="rect" id="Node000005" href="$d0/d6d/ring_8h.html" title="FIFO ring buffer driver library header." alt="" coords="229,79,281,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="160,29,225,69,222,73,157,34"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="244,107,204,144,201,140,240,103"/>
 </map>
