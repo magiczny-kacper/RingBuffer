@@ -28,6 +28,7 @@
 #define RING_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
 /**
  * @defgroup Ring_Buffer
